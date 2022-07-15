@@ -34,6 +34,8 @@ namespace DMGraph
         VLine vline1, vline2;
         Label xAxis, yAxis, title;
         
+        Label statsX, statsY, statsTitle;
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -68,6 +70,22 @@ namespace DMGraph
             WpfPlot2.Plot.YLabel("Vertical Axis");
             WpfPlot2.Plot.Palette = Palette.ColorblindFriendly;
             WpfPlot2.Refresh();
+            
+            //Plot 3 - Statistics
+            double[] ys2 = DataGen.NoisyLinear(null, pointCount: 100, noise: 40);
+            double[] xs2 = DataGen.Consecutive(ys2.Length);
+            double x1 = xs2[0];
+            double x2 = xs2[^1];//same as  = xs2[xs2.Length - 1];
+            var model = new ScottPlot.Statistics.LinearRegressionLine(xs2,ys2);
+            var stats = new ScottPlot.Statistics.BasicStats(ys2);
+            WpfPlot3.Plot.Title("Linear Regression\n" +
+                                $"Y = {model.slope:0.0000}x + {model.offset:0.0}\n" +
+                                $"(R² = {model.rSquared:0.0000})\n" +
+                                $"Mean = {stats.Mean:0.00}   STD = {stats.StDev:0.000}");
+            WpfPlot3.Plot.AddScatter(xs2, ys2, lineWidth: 0);
+            WpfPlot3.Plot.AddLine(model.slope, model.offset, (x1, x2), lineWidth: 2);
+            WpfPlot3.Plot.SaveFig("stats_linearRegression.png");
+            WpfPlot3.Refresh();
         }
 
         private void WpfPlot_OnMouseMove(object sender, MouseEventArgs e)
