@@ -25,7 +25,11 @@ namespace DMGraph
     {
         //Properties
         //Plot Elements
+        private readonly ScatterPlot MyScatterPlot;
         Crosshair Crosshair;
+        private readonly MarkerPlot HighlightedPoint;
+        private int LastHighlightedIndex = -1;
+        
         ScatterPlot sinPlot, cosPlot;
         VLine vline1, vline2;
         Label xAxis, yAxis, title;
@@ -33,15 +37,28 @@ namespace DMGraph
         public MainWindow()
         {
             InitializeComponent();
+            
             //Plot 1 Example Points
-            WpfPlot.Plot.AddSignal(DataGen.RandomWalk(null, 100));
+            Random rand = new Random(0);
+            int pointCount = 20;
+            double[] xs = DataGen.Random(rand, pointCount);
+            double[] ys = DataGen.Random(rand, pointCount, multiplier: 1_000);
+            MyScatterPlot = WpfPlot.Plot.AddScatterPoints(xs, ys);
             Crosshair = WpfPlot.Plot.AddCrosshair(0, 0);
+            // Add a red circle we can move around later as a highlighted point indicator
+            HighlightedPoint = WpfPlot.Plot.AddPoint(0, 0);
+            HighlightedPoint.Color = System.Drawing.Color.Red;
+            HighlightedPoint.MarkerSize = 10;
+            HighlightedPoint.MarkerLineWidth = 2;
+            HighlightedPoint.MarkerShape = ScottPlot.MarkerShape.filledCircle;
+            HighlightedPoint.IsVisible = false;
             WpfPlot.Refresh();
+            
             //Plot 2 Example Points
-            int pointCount = 51;
-            double[] dataXs = DataGen.Consecutive(pointCount);
-            double[] dataSin = DataGen.Sin(pointCount);
-            double[] dataCos = DataGen.Cos(pointCount);
+            int pointCount2 = 51;
+            double[] dataXs = DataGen.Consecutive(pointCount2);
+            double[] dataSin = DataGen.Sin(pointCount2);
+            double[] dataCos = DataGen.Cos(pointCount2);
             sinPlot = WpfPlot2.Plot.AddScatter(dataXs, dataSin);
             cosPlot = WpfPlot2.Plot.AddScatter(dataXs, dataCos);
             vline1 = WpfPlot2.Plot.AddVerticalLine(0);
@@ -68,6 +85,29 @@ namespace DMGraph
 
             Crosshair.X = coordinateX;
             Crosshair.Y = coordinateY;
+            
+            // determine point nearest the cursor
+            (double mouseCoordX, double mouseCoordY) = WpfPlot.GetMouseCoordinates();
+            double xyRatio = WpfPlot.Plot.XAxis.Dims.PxPerUnit / WpfPlot.Plot.YAxis.Dims.PxPerUnit;
+            (double pointX, double pointY, int pointIndex) = MyScatterPlot.GetPointNearest(mouseCoordX, mouseCoordY, xyRatio);
+            
+            // place the highlight over the point of interest
+            HighlightedPoint.X = pointX;
+            HighlightedPoint.Y = pointY;
+            HighlightedPoint.IsVisible = true;
+            
+            // render if the highlighted point chnaged
+            if (LastHighlightedIndex != pointIndex)
+            {
+                LastHighlightedIndex = pointIndex;
+                WpfPlot.Refresh();
+            }
+
+            // update the GUI to describe the highlighted point
+            double mouseX = e.GetPosition(this).X;
+            double mouseY = e.GetPosition(this).Y;
+            label1.Content = $"Highlighted point : X = {pointX:N2} , Y = {pointY:N2}";
+            
 
             WpfPlot.Refresh();
         }

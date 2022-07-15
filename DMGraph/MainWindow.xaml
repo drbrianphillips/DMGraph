@@ -20,6 +20,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             
             <Label Content="X" Grid.Row="1" Grid.Column="0" FontWeight="Bold"/>
@@ -34,6 +35,9 @@
 
             <Label Name="XCoordinateLabel" Content="123.456" Grid.Row="1" Grid.Column="2" FontFamily="consolas" />
             <Label Name="YCoordinateLabel" Content="123.456" Grid.Row="2" Grid.Column="2" FontFamily="consolas" />
+            
+            <Label Name="label1" Content="Hover over a data point to begin..." Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" FontSize="14"/>
+                
         </Grid>
         
         <Grid>
