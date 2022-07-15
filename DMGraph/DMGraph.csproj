@@ -50,8 +50,8 @@
     <Folder Include="Models\" />
     <Folder Include="DataAccess\" />
     <Folder Include="Logging\" />
+    <Folder Include="Resources\" />
     <Folder Include="ViewModels\" />
-    <Folder Include="ResourceDictionary\" />
   </ItemGroup>
 
 </Project>

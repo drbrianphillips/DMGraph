@@ -10,7 +10,7 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Resources\Brushes_Fonts_Margins_Converters.xaml">
+    <Page Update="ResourceDictionary\Brushes_Fonts_Margins_Converters.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
