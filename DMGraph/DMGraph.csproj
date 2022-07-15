@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<!--PropertyGroup-->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>True</UseWindowsForms>
+    <StartupObject>DMGraph.App</StartupObject>
+    <BaseOutputPath>C:\Drainmod7</BaseOutputPath>
+	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+	<Configurations>Debug;Release;Publish</Configurations>
+	<Platforms>AnyCPU</Platforms>
+	<Authors>Brian D Phillips, PhD</Authors>
+	<Company>North Carolina State University</Company>
+	<Copyright>2022 North Carolina State University</Copyright>
+	<Description>DRAINMOD Graphing Utility For DRAINMOD Version 7</Description>
+	<AssemblyName>DMGraph</AssemblyName>
+	<!--<ApplicationIcon>DRAINMOD_256.ico</ApplicationIcon>-->
+	<ProjectGuid>{EE0FB817-1FA5-4876-A348-40BA5C7C689C}</ProjectGuid>
+	<Version>7.0.0.1</Version>
+	<PackageVersion>7.0.0.1</PackageVersion>
+	<AssemblyVersion>7.0.0.1</AssemblyVersion>
+	<FileVersion>7.0.0.1</FileVersion>
+  </PropertyGroup>
+
+	<!--Builds-->
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<OutputPath>C:\Drainmod7\</OutputPath>
+		<NoWarn>1701;1702;0168;0169</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+		<OutputPath>C:\Drainmod7\</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Publish' ">
+		<OutputPath>C:\DrainMod7Code\Publish_Rider\</OutputPath>
+	</PropertyGroup>
+
+	<!--Items-->
+  <ItemGroup>
+    <PackageReference Include="ScottPlot.WPF" Version="4.1.52" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Converter\" />
+    <Folder Include="Controls\" />
+    <Folder Include="Models\" />
+    <Folder Include="DataAccess\" />
+    <Folder Include="Logging\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="ResourceDictionary\" />
+  </ItemGroup>
+
+</Project>

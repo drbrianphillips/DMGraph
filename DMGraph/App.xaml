@@ -1,0 +1,14 @@
+﻿<Application x:Class="DMGraph.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:DMGraph"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- The Order Matters - Read In Top To Bottom -->
+                <ResourceDictionary Source="ResourceDictionary/Brushes_Fonts_Margins_Converters.xaml" />
+ </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

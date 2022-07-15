@@ -1,0 +1,22 @@
+C:\Drainmod7\DMGraph.exe
+C:\Drainmod7\DMGraph.deps.json
+C:\Drainmod7\DMGraph.runtimeconfig.json
+C:\Drainmod7\DMGraph.dll
+C:\Drainmod7\DMGraph.pdb
+C:\Users\Dr. Brian\source\repos\DMGraph\DMGraph\obj\Debug\DMGraph.csproj.AssemblyReference.cache
+C:\Users\Dr. Brian\source\repos\DMGraph\DMGraph\obj\Debug\MainWindow.g.cs
+C:\Users\Dr. Brian\source\repos\DMGraph\DMGraph\obj\Debug\App.g.cs
+C:\Users\Dr. Brian\source\repos\DMGraph\DMGraph\obj\Debug\DMGraph_MarkupCompile.cache
+C:\Users\Dr. Brian\source\repos\DMGraph\DMGraph\obj\Debug\DMGraph_MarkupCompile.lref
+C:\Users\Dr. Brian\source\repos\DMGraph\DMGraph\obj\Debug\MainWindow.baml
+C:\Users\Dr. Brian\source\repos\DMGraph\DMGraph\obj\Debug\DMGraph.g.resources
+C:\Users\Dr. Brian\source\repos\DMGraph\DMGraph\obj\Debug\DMGraph.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dr. Brian\source\repos\DMGraph\DMGraph\obj\Debug\DMGraph.AssemblyInfoInputs.cache
+C:\Users\Dr. Brian\source\repos\DMGraph\DMGraph\obj\Debug\DMGraph.AssemblyInfo.cs
+C:\Users\Dr. Brian\source\repos\DMGraph\DMGraph\obj\Debug\DMGraph.csproj.CoreCompileInputs.cache
+C:\Users\Dr. Brian\source\repos\DMGraph\DMGraph\obj\Debug\DMGraph.csproj.CopyComplete
+C:\Users\Dr. Brian\source\repos\DMGraph\DMGraph\obj\Debug\DMGraph.dll
+C:\Users\Dr. Brian\source\repos\DMGraph\DMGraph\obj\Debug\refint\DMGraph.dll
+C:\Users\Dr. Brian\source\repos\DMGraph\DMGraph\obj\Debug\DMGraph.pdb
+C:\Users\Dr. Brian\source\repos\DMGraph\DMGraph\obj\Debug\DMGraph.genruntimeconfig.cache
+C:\Users\Dr. Brian\source\repos\DMGraph\DMGraph\obj\Debug\ref\DMGraph.dll
