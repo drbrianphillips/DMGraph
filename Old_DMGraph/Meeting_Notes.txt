@@ -1,0 +1,18 @@
+﻿Aug 14 2009
+-add observed data file legend label text box
+-add rmse to stats section
+- in prefs user can have option of no title
+-center legend if on bottom
+-scatter plots option
+-user can change plot type on local level having lines, scatter, bar all on one
+-can set any variable to any axis
+-turn on / off reverse axis
+-run time datapoint editing
+-possible stand alone stat program
+-N outputs needed
+-Salinity?
+
+attended by : brian, mohamed, chip, tim
+
+-let them know about .net framework and pc requirements
+-also discussed buying server for weyerhauser projects
