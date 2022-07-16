@@ -13,7 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ScottPlot;
+using ScottPlot.Drawing;
 using ScottPlot.Plottable;
+using Color = System.Drawing.Color;
 using Palette = ScottPlot.Drawing.Palette;
 
 namespace DMGraph
@@ -69,6 +71,11 @@ namespace DMGraph
             WpfPlot2.Plot.XLabel("Horizontal Axis");
             WpfPlot2.Plot.YLabel("Vertical Axis");
             WpfPlot2.Plot.Palette = Palette.ColorblindFriendly;
+            sinPlot.LineColor = Color.Blue;
+            sinPlot.MarkerShape = MarkerShape.filledSquare;
+            sinPlot.MarkerColor = Color.Magenta;
+            sinPlot.LineStyle = LineStyle.Dash;
+            sinPlot.LineWidth = 3;
             WpfPlot2.Refresh();
             
             //Plot 3 - Statistics
@@ -83,11 +90,60 @@ namespace DMGraph
                                 $"(R² = {model.rSquared:0.0000})\n" +
                                 $"Mean = {stats.Mean:0.00}   STD = {stats.StDev:0.000}");
             WpfPlot3.Plot.AddScatter(xs2, ys2, lineWidth: 0);
-            WpfPlot3.Plot.AddLine(model.slope, model.offset, (x1, x2), lineWidth: 2);
+            var statsPlot = WpfPlot3.Plot.AddLine(model.slope, model.offset, (x1, x2), lineWidth: 2);
+            statsPlot.LineColor = Color.Blue;
+            statsPlot.MarkerShape = MarkerShape.filledSquare;
+            statsPlot.MarkerColor = Color.Magenta;
+            statsPlot.LineStyle = LineStyle.Dash;
+            statsPlot.LineWidth = 3;
             WpfPlot3.Plot.SaveFig("stats_linearRegression.png");
             WpfPlot3.Refresh();
+            
+            //Plot 4 - Bar Plot
+            //double[] values = { 27.3, 23.1, 21.2, 16.1, 6.4, 19.2, 18.7, 17.3, 20.3, 13.1 };
+            //var bar = WpfPlot4.Plot.AddBar(values);
+            //bar.ShowValuesAboveBars = true;
+            //bar.ValueFormatter = customFormatter;
+            //bar.Font.Size = 8;
+            //WpfPlot4.Plot.SetAxisLimits(yMin: 0);
+            //WpfPlot4.Plot.SetAxisLimits(yMax: 50);
+            //WpfPlot4.Plot.SetAxisLimitsX(-1,12);
+            
+            var bar1 = WpfPlot4.Plot.AddBar(new double[] { 10, 13, 15 }, new double[] { 1, 5, 9 });
+            //bar1.HatchStyle = Drawing.HatchStyle.StripedUpwardDiagonal;
+            bar1.HatchStyle = HatchStyle.StripedDownwardDiagonal;
+            bar1.FillColor = Color.Gray;
+            bar1.FillColorHatch = Color.Black;
+            bar1.Label = "Series 1";
+            bar1.ShowValuesAboveBars = true;
+            bar1.ValueFormatter = customFormatter;
+            bar1.Font.Size = 12;
+            
+            var bar2 = WpfPlot4.Plot.AddBar(new double[] { 14, 15, 9 }, new double[] { 2, 6, 10 });
+            bar2.HatchStyle = HatchStyle.StripedWideDownwardDiagonal;
+            bar2.FillColor = Color.DodgerBlue;
+            bar2.FillColorHatch = Color.DeepSkyBlue;
+            bar2.Label = "Series 2";
+            bar2.ShowValuesAboveBars = true;
+            bar2.ValueFormatter = customFormatter;
+            bar2.Font.Size = 12;
+            
+            // add a legend to display each labeled bar plot
+            WpfPlot4.Plot.Legend(location: Alignment.UpperRight);
+
+            // adjust axis limits so there is no padding below the bar graph
+            WpfPlot4.Plot.SetAxisLimits(yMin: 0, yMax: 20);
+
+            WpfPlot4.Plot.SaveFig("bar_pattern.png");
+            
+            WpfPlot4.Refresh();
+            
+            
+            
         }
 
+        Func<double, string> customFormatter = y => $"Y={y:N2}";
+        
         private void WpfPlot_OnMouseMove(object sender, MouseEventArgs e)
         {
             int pixelX = (int)e.MouseDevice.GetPosition(WpfPlot).X;

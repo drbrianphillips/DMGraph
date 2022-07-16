@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DMGraph"
         xmlns:ScottPlot="clr-namespace:ScottPlot;assembly=ScottPlot.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1200" Width="1000">
+        Title="DRAINMOD Graphing Utility" Height="800" Width="900">
     
     <DockPanel Margin="5">
         <Grid DockPanel.Dock="Top">
