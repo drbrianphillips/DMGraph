@@ -85,6 +85,8 @@ namespace DMGraph
             double x2 = xs2[^1];//same as  = xs2[xs2.Length - 1];
             var model = new ScottPlot.Statistics.LinearRegressionLine(xs2,ys2);
             var stats = new ScottPlot.Statistics.BasicStats(ys2);
+            var style = ScottPlot.Style.Seaborn;
+            WpfPlot3.Plot.Style(style);
             WpfPlot3.Plot.Title("Linear Regression\n" +
                                 $"Y = {model.slope:0.0000}x + {model.offset:0.0}\n" +
                                 $"(R² = {model.rSquared:0.0000})\n" +
@@ -96,6 +98,7 @@ namespace DMGraph
             statsPlot.MarkerColor = Color.Magenta;
             statsPlot.LineStyle = LineStyle.Dash;
             statsPlot.LineWidth = 3;
+            
             WpfPlot3.Plot.SaveFig("stats_linearRegression.png");
             WpfPlot3.Refresh();
             
@@ -137,6 +140,24 @@ namespace DMGraph
             WpfPlot4.Plot.SaveFig("bar_pattern.png");
             
             WpfPlot4.Refresh();
+            
+            //Plot 5 - Date X Axis
+//            var plt = new ScottPlot.Plot(600, 400);
+//
+//            // create data sample data
+//            DateTime[] myDates = new DateTime[100];
+//            for (int i = 0; i < myDates.Length; i++)
+//                myDates[i] = new DateTime(1985, 9, 24).AddDays(7 * i);
+//
+//          // Convert DateTime[] to double[] before plotting
+//            double[] xs = myDates.Select(x => x.ToOADate()).ToArray();
+//            double[] ys = DataGen.RandomWalk(myDates.Length);
+//            plt.AddScatter(xs, ys);
+//
+//             // Then tell the axis to display tick labels using a time format
+//            plt.XAxis.DateTimeFormat(true);
+//
+//            plt.SaveFig("ticks_dateTime.png");
             
             
             
