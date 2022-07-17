@@ -12,11 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+//External Libraries
+using MathNet.Numerics;
+using MathNet.Numerics.Statistics;
+using MathNet.Numerics.LinearRegression;
 using ScottPlot;
 using ScottPlot.Drawing;
 using ScottPlot.Plottable;
 using Color = System.Drawing.Color;
 using Palette = ScottPlot.Drawing.Palette;
+using Window = System.Windows.Window;
 
 namespace DMGraph
 {
@@ -86,11 +91,22 @@ namespace DMGraph
             var model = new ScottPlot.Statistics.LinearRegressionLine(xs2,ys2);
             var stats = new ScottPlot.Statistics.BasicStats(ys2);
             var style = ScottPlot.Style.Seaborn;
+            //Testing Math.Net
+            var statisticsNet = new DescriptiveStatistics(ys2);
+            var stdDev = statisticsNet.StandardDeviation;
+            var mean = statisticsNet.Mean;
+            (double A, double B) p = Fit.Line(xs2, ys2);
+            double a = p.Item1;
+            double b = p.Item2;
+            var rSquared = GoodnessOfFit.RSquared(xs2.Select(x => a+b*x), ys2);
+            //End test math.Net
             WpfPlot3.Plot.Style(style);
             WpfPlot3.Plot.Title("Linear Regression\n" +
                                 $"Y = {model.slope:0.0000}x + {model.offset:0.0}\n" +
                                 $"(R² = {model.rSquared:0.0000})\n" +
-                                $"Mean = {stats.Mean:0.00}   STD = {stats.StDev:0.000}");
+                                $"Mean = {stats.Mean:0.00}   STD = {stats.StDev:0.000}\n" +
+                                $"NetMean = {mean:0.00}   NetSTD = {stdDev:0.000}" +
+                                $"Slope = {b:0.00}   R² = = {rSquared:0.000}");
             WpfPlot3.Plot.AddScatter(xs2, ys2, lineWidth: 0);
             var statsPlot = WpfPlot3.Plot.AddLine(model.slope, model.offset, (x1, x2), lineWidth: 2);
             statsPlot.LineColor = Color.Blue;
@@ -99,7 +115,6 @@ namespace DMGraph
             statsPlot.LineStyle = LineStyle.Dash;
             statsPlot.LineWidth = 3;
             
-            WpfPlot3.Plot.SaveFig("stats_linearRegression.png");
             WpfPlot3.Refresh();
             
             //Plot 4 - Bar Plot
@@ -137,7 +152,6 @@ namespace DMGraph
             // adjust axis limits so there is no padding below the bar graph
             WpfPlot4.Plot.SetAxisLimits(yMin: 0, yMax: 20);
 
-            WpfPlot4.Plot.SaveFig("bar_pattern.png");
             
             WpfPlot4.Refresh();
             
